@@ -50,7 +50,7 @@ private slots:
 
 private:
     Ui::Widget *ui;
-
+    bool doing;
     bool existCurrentBlock;
     int currentBlock, currentCommand;
     int n, m, level;
@@ -60,6 +60,11 @@ private:
     QVector<bool> existVec;
     QVector<int> vec;
 
+    void drawStatus();
     void setUpBackground();
+    void printSuccessMessage();
+    void printFailMessage();
+    void printErrorMessage();
+    void checkResult();
 };
 #endif // WIDGET_H
