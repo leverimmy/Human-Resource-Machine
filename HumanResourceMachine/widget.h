@@ -5,6 +5,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QFile>
+#include <QQueue>
+
+#define N 6
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -43,7 +46,20 @@ private slots:
 
     void on_levelButton4_clicked();
 
+    void on_confirmNextStepButton_clicked();
+
 private:
     Ui::Widget *ui;
+
+    bool existCurrentBlock;
+    int currentBlock, currentCommand;
+    int n, m, level;
+    QQueue<int> qIn, qOut, qAns;
+    QSet<QString> cmdSet;
+    QStringList cmdLines;
+    QVector<bool> existVec;
+    QVector<int> vec;
+
+    void setUpBackground();
 };
 #endif // WIDGET_H
