@@ -6,6 +6,12 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    startSound = new QSoundEffect();
+    startSound->setSource(QUrl::fromLocalFile("./bgm.wav"));
+    startSound->setLoopCount(QSoundEffect::Infinite);
+    startSound->setVolume(0.5f);
+    startSound->play();
 }
 
 Widget::~Widget()
@@ -57,8 +63,6 @@ void Widget::on_aboutButton_clicked()
 
 void Widget::on_exitButton_clicked()
 {
-    // todo: 存储 level 信息到本地
-
     QFile writeFile("./userdata.txt");
     writeFile.open(QIODevice::WriteOnly);
     writeFile.write(QString::number(level).toLatin1());
@@ -68,9 +72,10 @@ void Widget::on_exitButton_clicked()
 }
 
 
-void Widget::on_volumnHorizontalSlider_sliderMoved(int position)
+void Widget::on_volumnHorizontalSlider_valueChanged(int value)
 {
-    ui->volumnValue->setText(QString::number(position));
+    ui->volumnValue->setText(QString::number(value));
+    startSound->setVolume(value / 100.0f);
 }
 
 
@@ -79,7 +84,7 @@ void Widget::on_levelButton1_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 
     qIn.clear(), qOut.clear(), qAns.clear(), cmdSet.clear();
-    vec.clear(), existVec.clear();
+    vec.clear(), existVec.clear(), cmdLines.clear();
     existCurrentBlock = 0;
 
     currentLevel = 1;
@@ -99,7 +104,7 @@ void Widget::on_levelButton2_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 
     qIn.clear(), qOut.clear(), qAns.clear(), cmdSet.clear();
-    vec.clear(), existVec.clear();
+    vec.clear(), existVec.clear(), cmdLines.clear();
     existCurrentBlock = 0;
 
     currentLevel = 2;
@@ -120,13 +125,13 @@ void Widget::on_levelButton3_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 
     qIn.clear(), qOut.clear(), qAns.clear(), cmdSet.clear();
-    vec.clear(), existVec.clear();
+    vec.clear(), existVec.clear(), cmdLines.clear();
     existCurrentBlock = 0;
 
     currentLevel = 3;
     qIn.enqueue(6), qIn.enqueue(2), qIn.enqueue(7), qIn.enqueue(7), qIn.enqueue(-9), qIn.enqueue(3), qIn.enqueue(-3), qIn.enqueue(-3);
     qAns.enqueue(7), qAns.enqueue(-3);
-    n = 2;
+    n = 3;
     vec.resize(n);
     existVec.resize(n);
     cmdSet.enqueue("inbox"), cmdSet.enqueue("outbox"), cmdSet.enqueue("copyfrom"), cmdSet.enqueue("copyto");
@@ -138,19 +143,68 @@ void Widget::on_levelButton3_clicked()
 
 void Widget::on_levelButton4_clicked()
 {
+    qIn.clear(), qOut.clear(), qAns.clear(), cmdSet.clear();
+    vec.clear(), existVec.clear(), cmdLines.clear();
+    existCurrentBlock = 0;
+    currentLevel = 4;
+
     QString filePathName = QFileDialog::getOpenFileName(this, "打开", "./", "JSON 文件 (*.json)");
     if (filePathName.isEmpty()) {
         QMessageBox::warning(this, "警告", "已取消选择关卡！");
     } else {
-        ui->fileDirectory->setText(filePathName);
         QFile openFile(filePathName);
         openFile.open(QIODevice::ReadOnly);
         QByteArray fileContents = openFile.readAll();
         openFile.close();
 
-        // todo: fileContents 导入之后需要判断格式是否合法
+        QJsonObject jsonObj = QJsonDocument::fromJson(fileContents).object();
 
+        QJsonArray jsonArray = jsonObj.value("input").toArray();
+
+        for (const QJsonValue& element : jsonArray)
+            qIn.enqueue(element.toInt());
+
+        jsonArray = jsonObj.value("output").toArray();
+        for (const QJsonValue& element : jsonArray)
+            qAns.enqueue(element.toInt());
+
+        n = jsonObj.value("vacancy").toInt();
+        vec.resize(n);
+        existVec.resize(n);
+
+        jsonArray = jsonObj.value("cmd").toArray();
+        for (const QJsonValue& element : jsonArray) {
+            switch (element.toInt()) {
+            case 0:
+                cmdSet.enqueue("inbox");
+                break;
+            case 1:
+                cmdSet.enqueue("outbox");
+                break;
+            case 2:
+                cmdSet.enqueue("copyfrom");
+                break;
+            case 3:
+                cmdSet.enqueue("copyto");
+                break;
+            case 4:
+                cmdSet.enqueue("add");
+                break;
+            case 5:
+                cmdSet.enqueue("sub");
+                break;
+            case 6:
+                cmdSet.enqueue("jump");
+                break;
+            case 7:
+                cmdSet.enqueue("jumpifzero");
+                break;
+            default:
+                break;
+            }
+        }
         ui->stackedWidget->setCurrentIndex(3);
+        setUpBackground();
     }
 
 }
@@ -158,11 +212,17 @@ void Widget::on_levelButton4_clicked()
 void Widget::on_confirmNextStepButton_clicked()
 {
     if (!doing) {
-        cmdLines = ui->cmdTextEdit->toPlainText().split("\n");
+
+        QStringList tmp = ui->cmdTextEdit->toPlainText().split("\n");
+
+        for (const QString& element : tmp) {
+            if (element.size())
+                cmdLines.push_back(element);
+        }
 
         m = cmdLines.size();
 
-        if (m == 0) {
+        if (m == 0) { // 输入的指令为空
             printFailMessage();
             return;
         }
@@ -178,7 +238,8 @@ void Widget::on_confirmNextStepButton_clicked()
 
         if (currentCommand == m + 1) {
             if (checkResult()) {
-                level = currentLevel;
+                if (currentLevel != 4)
+                    level = currentLevel;
                 if (level >= 1) {
                     ui->levelButton2->setDisabled(false);
                 } else if (level >= 2) {
@@ -265,8 +326,10 @@ void Widget::on_confirmNextStepButton_clicked()
         currentCommand++;
         if (currentCommand <= m)
             ui->currentStepLabel->setText(cmdLines[currentCommand - 1]);
-        else
+        else {
+            ui->currentStepLabel->clear();
             ui->confirmNextStepButton->setText("检查");
+        }
         drawStatus();
     }
 }
@@ -381,25 +444,71 @@ void Widget::setUpBackground() {
 
 void Widget::printSuccessMessage() {
 
-    bool ok = QMessageBox::information(this, "Success", "任务成功！");
+    bool ok = QMessageBox::information(this, " ", "Success: 任务成功！");
     if (ok) {
-        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(1);
     }
 }
 
 
 void Widget::printFailMessage() {
-    bool ok = QMessageBox::critical(this, "Fail", "任务失败！");
-    if (ok) {
+
+    QPushButton *okbtn = new QPushButton("重新开始");
+    QPushButton *cancelbtn = new QPushButton("返回主菜单");
+    QMessageBox *mymsgbox = new QMessageBox;
+
+    mymsgbox->setIcon(QMessageBox::Warning);
+    mymsgbox->setWindowTitle(" ");
+    mymsgbox->setText("Fail: 任务失败！");
+    mymsgbox->addButton(okbtn, QMessageBox::AcceptRole);
+    mymsgbox->addButton(cancelbtn, QMessageBox::RejectRole);
+    mymsgbox->setWindowFlags(Qt::Widget);
+    mymsgbox->setWindowFlags(Qt::WindowStaysOnTopHint);
+    mymsgbox->show();
+    mymsgbox->exec(); // 阻塞等待用户输入
+
+    if (mymsgbox->clickedButton() == okbtn) {
+        if (currentLevel == 1)
+            on_levelButton1_clicked();
+        if (currentLevel == 2)
+            on_levelButton2_clicked();
+        if (currentLevel == 3)
+            on_levelButton3_clicked();
+        if (currentLevel == 4)
+            ui->stackedWidget->setCurrentIndex(1);
+    } else {
         ui->stackedWidget->setCurrentIndex(0);
     }
 }
 
 
 void Widget::printErrorMessage() {
-    QString str = "您第 " + QString::number(currentCommand) + " 行的命令为非法命令。";
-    bool ok = QMessageBox::warning(this, "Error", str);
-    if (ok) {
+    QString str = "Error: 您第 " + QString::number(currentCommand) + " 行的命令为非法命令。";
+    QPushButton *okbtn = new QPushButton("重新开始");
+    QPushButton *cancelbtn = new QPushButton("返回主菜单");
+    QMessageBox *mymsgbox = new QMessageBox;
+
+
+    mymsgbox->setIcon(QMessageBox::Warning);
+    mymsgbox->setWindowTitle(" ");
+    mymsgbox->setText(str);
+    mymsgbox->addButton(okbtn, QMessageBox::AcceptRole);
+    mymsgbox->addButton(cancelbtn, QMessageBox::RejectRole);
+    mymsgbox->setWindowFlags(Qt::Widget);
+    mymsgbox->setWindowFlags(Qt::WindowStaysOnTopHint);
+    mymsgbox->show();
+    mymsgbox->exec(); // 阻塞等待用户输入
+
+    if (mymsgbox->clickedButton() == okbtn) {
+        if (currentLevel == 1)
+            on_levelButton1_clicked();
+        if (currentLevel == 2)
+            on_levelButton2_clicked();
+        if (currentLevel == 3)
+            on_levelButton3_clicked();
+        if (currentLevel == 4)
+            ui->stackedWidget->setCurrentIndex(1);
+    } else {
         ui->stackedWidget->setCurrentIndex(0);
     }
 }
@@ -425,7 +534,7 @@ bool Widget::checkResult() {
 
 
 bool Widget::valid(QString test) {
-    for (QString &a : cmdSet) {
+    for (const QString &a : cmdSet) {
         if (a == test)
             return true;
     }

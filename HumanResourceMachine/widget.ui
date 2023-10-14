@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="mainPage">
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -129,51 +129,76 @@
       <string>返回</string>
      </property>
     </widget>
-    <widget class="QWidget" name="gridLayoutWidget_2">
+    <widget class="QLabel" name="authors">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>240</x>
        <y>310</y>
-       <width>361</width>
-       <height>80</height>
+       <width>80</width>
+       <height>20</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="2">
-       <widget class="QLabel" name="volumnValue">
-        <property name="text">
-         <string>50</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QSlider" name="volumnHorizontalSlider">
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="value">
-         <number>50</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>BGM 音量大小</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLabel" name="fileDirectory">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <property name="text">
+      <string>作者</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="author1">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>310</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>熊泽恩、汪宇萌</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="BGM">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>280</y>
+       <width>80</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BGM 音量大小</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="volumnValue">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>280</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>50</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="volumnHorizontalSlider">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>280</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>50</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="gamePage">
@@ -193,9 +218,9 @@
     <widget class="QLabel" name="announcementLabel">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>160</x>
        <y>10</y>
-       <width>331</width>
+       <width>461</width>
        <height>101</height>
       </rect>
      </property>

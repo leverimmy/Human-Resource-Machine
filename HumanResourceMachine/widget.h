@@ -6,6 +6,11 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QQueue>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QtMultimedia/QSoundEffect>
+
 
 #define N 6
 
@@ -34,7 +39,7 @@ private slots:
 
     void on_exitButton_clicked();
 
-    void on_volumnHorizontalSlider_sliderMoved(int position);
+    void on_volumnHorizontalSlider_valueChanged(int value);
 
     void on_levelButton1_clicked();
 
@@ -57,6 +62,7 @@ private:
     QStringList cmdLines;
     QVector<bool> existVec;
     QVector<int> vec;
+    QSoundEffect *startSound;
 
     void drawStatus();
     void setUpBackground();
