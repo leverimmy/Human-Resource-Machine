@@ -36,8 +36,6 @@ private slots:
 
     void on_volumnHorizontalSlider_sliderMoved(int position);
 
-    void on_selectFileDirectory_clicked();
-
     void on_levelButton1_clicked();
 
     void on_levelButton2_clicked();
@@ -53,9 +51,9 @@ private:
     bool doing;
     bool existCurrentBlock;
     int currentBlock, currentCommand;
-    int n, m, level;
+    int n, m, level = 0, currentLevel;
     QQueue<int> qIn, qOut, qAns;
-    QSet<QString> cmdSet;
+    QQueue<QString> cmdSet;
     QStringList cmdLines;
     QVector<bool> existVec;
     QVector<int> vec;
@@ -65,6 +63,8 @@ private:
     void printSuccessMessage();
     void printFailMessage();
     void printErrorMessage();
-    void checkResult();
+    bool checkResult();
+    bool valid(QString);
+    void renderLevelButton(int);
 };
 #endif // WIDGET_H

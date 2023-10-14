@@ -6,10 +6,6 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
-
-
-
 }
 
 Widget::~Widget()
@@ -38,6 +34,17 @@ void Widget::on_backButton3_clicked()
 
 void Widget::on_startButton_clicked()
 {
+    try {
+        QFile openFile("./userdata.txt");
+        openFile.open(QIODevice::ReadOnly);
+        QByteArray fileContents = openFile.readAll();
+        openFile.close();
+        level = fileContents.toInt();
+    } catch (...) {
+        level = 0;
+    }
+
+    renderLevelButton(level);
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -50,6 +57,13 @@ void Widget::on_aboutButton_clicked()
 
 void Widget::on_exitButton_clicked()
 {
+    // todo: 存储 level 信息到本地
+
+    QFile writeFile("./userdata.txt");
+    writeFile.open(QIODevice::WriteOnly);
+    writeFile.write(QString::number(level).toLatin1());
+    writeFile.close();
+
     close();
 }
 
@@ -57,24 +71,6 @@ void Widget::on_exitButton_clicked()
 void Widget::on_volumnHorizontalSlider_sliderMoved(int position)
 {
     ui->volumnValue->setText(QString::number(position));
-}
-
-
-void Widget::on_selectFileDirectory_clicked()
-{
-    QString filePathName = QFileDialog::getOpenFileName(this, "打开", "./", "JSON 文件 (*.json)");
-    if (filePathName.isEmpty()) {
-        QMessageBox::warning(this, "警告", "已取消选择存档！");
-    }
-    else {
-        ui->fileDirectory->setText(filePathName);
-        QFile openFile(filePathName);
-        openFile.open(QIODevice::ReadOnly);
-        QByteArray fileContents = openFile.readAll();
-        openFile.close();
-
-        // fileContents 导入之后需要判断格式是否合法
-    }
 }
 
 
@@ -86,12 +82,13 @@ void Widget::on_levelButton1_clicked()
     vec.clear(), existVec.clear();
     existCurrentBlock = 0;
 
+    currentLevel = 1;
     qIn.enqueue(1), qIn.enqueue(2);
     qAns.enqueue(1), qAns.enqueue(2);
     n = 0;
     vec.resize(n);
     existVec.resize(n);
-    cmdSet.insert("inbox"), cmdSet.insert("outbox");
+    cmdSet.enqueue("inbox"), cmdSet.enqueue("outbox");
 
     setUpBackground();
 }
@@ -105,13 +102,14 @@ void Widget::on_levelButton2_clicked()
     vec.clear(), existVec.clear();
     existCurrentBlock = 0;
 
+    currentLevel = 2;
     qIn.enqueue(3), qIn.enqueue(9), qIn.enqueue(5), qIn.enqueue(1), qIn.enqueue(-2), qIn.enqueue(-2), qIn.enqueue(9), qIn.enqueue(-9);
     qAns.enqueue(-6), qAns.enqueue(6), qAns.enqueue(4), qAns.enqueue(-4), qAns.enqueue(0), qAns.enqueue(0), qAns.enqueue(18), qAns.enqueue(-18);
     n = 3;
     vec.resize(n);
     existVec.resize(n);
-    cmdSet.insert("inbox"), cmdSet.insert("outbox"), cmdSet.insert("copyfrom"), cmdSet.insert("copyto");
-    cmdSet.insert("add"), cmdSet.insert("sub"), cmdSet.insert("jump"), cmdSet.insert("jumpifzero");
+    cmdSet.enqueue("inbox"), cmdSet.enqueue("outbox"), cmdSet.enqueue("copyfrom"), cmdSet.enqueue("copyto");
+    cmdSet.enqueue("add"), cmdSet.enqueue("sub"), cmdSet.enqueue("jump"), cmdSet.enqueue("jumpifzero");
 
     setUpBackground();
 }
@@ -125,13 +123,14 @@ void Widget::on_levelButton3_clicked()
     vec.clear(), existVec.clear();
     existCurrentBlock = 0;
 
+    currentLevel = 3;
     qIn.enqueue(6), qIn.enqueue(2), qIn.enqueue(7), qIn.enqueue(7), qIn.enqueue(-9), qIn.enqueue(3), qIn.enqueue(-3), qIn.enqueue(-3);
     qAns.enqueue(7), qAns.enqueue(-3);
     n = 2;
     vec.resize(n);
     existVec.resize(n);
-    cmdSet.insert("inbox"), cmdSet.insert("outbox"), cmdSet.insert("copyfrom"), cmdSet.insert("copyto");
-    cmdSet.insert("add"), cmdSet.insert("sub"), cmdSet.insert("jump"), cmdSet.insert("jumpifzero");
+    cmdSet.enqueue("inbox"), cmdSet.enqueue("outbox"), cmdSet.enqueue("copyfrom"), cmdSet.enqueue("copyto");
+    cmdSet.enqueue("add"), cmdSet.enqueue("sub"), cmdSet.enqueue("jump"), cmdSet.enqueue("jumpifzero");
 
     setUpBackground();
 }
@@ -141,7 +140,7 @@ void Widget::on_levelButton4_clicked()
 {
     QString filePathName = QFileDialog::getOpenFileName(this, "打开", "./", "JSON 文件 (*.json)");
     if (filePathName.isEmpty()) {
-        QMessageBox::warning(this, "警告", "已取消选择存档！");
+        QMessageBox::warning(this, "警告", "已取消选择关卡！");
     } else {
         ui->fileDirectory->setText(filePathName);
         QFile openFile(filePathName);
@@ -149,7 +148,7 @@ void Widget::on_levelButton4_clicked()
         QByteArray fileContents = openFile.readAll();
         openFile.close();
 
-        // fileContents 导入之后需要判断格式是否合法
+        // todo: fileContents 导入之后需要判断格式是否合法
 
         ui->stackedWidget->setCurrentIndex(3);
     }
@@ -178,12 +177,19 @@ void Widget::on_confirmNextStepButton_clicked()
     } else {
 
         if (currentCommand == m + 1) {
-            checkResult();
+            if (checkResult()) {
+                level = currentLevel;
+                if (level >= 1) {
+                    ui->levelButton2->setDisabled(false);
+                } else if (level >= 2) {
+                    ui->levelButton3->setDisabled(false);
+                }
+            }
             return;
         }
 
         QString cmd = cmdLines[currentCommand - 1].split(' ')[0];
-        if (cmdSet.contains(cmd)) {
+        if (valid(cmd)) {
             if (cmd == "inbox") {
                 if (qIn.empty()) {
                     checkResult();
@@ -315,9 +321,63 @@ void Widget::setUpBackground() {
     ui->cmdTextEdit->clear();
     ui->currentStepLabel->clear();
     ui->confirmNextStepButton->setText("确认");
+    QString str = "", aStr = "";
+
+    str.append("输入序列：[");
+    QQueue<int> tmp1 = qIn;
+
+    while (!tmp1.empty()) {
+        str.append(QString::number(tmp1.front()));
+        tmp1.dequeue();
+        if(!tmp1.empty()) {
+            str.append(" ,");
+        }
+    }
+
+    str.append("]\n");
+
+
+    aStr.append(str), str.clear();
+
+    str.append("目标输出序列：[");
+    tmp1 = qAns;
+
+    while (!tmp1.empty()) {
+        str.append(QString::number(tmp1.front()));
+        tmp1.dequeue();
+        if(!tmp1.empty()) {
+            str.append(" ,");
+        }
+    }
+
+    str.append("]\n");
+
+
+    aStr.append(str), str.clear();
+
+    str.append("可用空地数：" + QString::number(n) + "\n");
+
+    str.append("可用指令集：[");
+    QQueue<QString> tmp2 = cmdSet;
+
+    while (!tmp2.empty()) {
+        str.append(tmp2.front());
+        tmp2.dequeue();
+        if(!tmp2.empty()) {
+            str.append(", ");
+        }
+    }
+
+    str.append("]\n");
+
+
+    aStr.append(str), str.clear();
+
+    ui->announcementLabel->setText(aStr);
     drawStatus();
     doing = false;
 }
+
 
 void Widget::printSuccessMessage() {
 
@@ -327,12 +387,14 @@ void Widget::printSuccessMessage() {
     }
 }
 
+
 void Widget::printFailMessage() {
     bool ok = QMessageBox::critical(this, "Fail", "任务失败！");
     if (ok) {
         ui->stackedWidget->setCurrentIndex(0);
     }
 }
+
 
 void Widget::printErrorMessage() {
     QString str = "您第 " + QString::number(currentCommand) + " 行的命令为非法命令。";
@@ -343,20 +405,39 @@ void Widget::printErrorMessage() {
 }
 
 
-void Widget::checkResult() {
+bool Widget::checkResult() {
     if (qOut.size() != qAns.size()) {
         printFailMessage();
-        return;
+        return false;
     } else {
         while (!qOut.empty()) {
             int a = qOut.front(), b = qAns.front();
             qOut.dequeue(), qAns.dequeue();
             if (a != b) {
                 printFailMessage();
-                return;
+                return false;
             }
         }
         printSuccessMessage();
-        return;
+        return true;
     }
+}
+
+
+bool Widget::valid(QString test) {
+    for (QString &a : cmdSet) {
+        if (a == test)
+            return true;
+    }
+    return false;
+}
+
+
+void Widget::renderLevelButton(int l) {
+    ui->levelButton2->setDisabled(true);
+    ui->levelButton3->setDisabled(true);
+    if (level >= 1)
+        ui->levelButton2->setDisabled(false);
+    if (level >= 2)
+        ui->levelButton3->setDisabled(false);
 }

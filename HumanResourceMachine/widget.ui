@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="mainPage">
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -159,24 +159,10 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="selectFileDirectory">
-        <property name="text">
-         <string>浏览...</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>BGM 音量大小</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>存档位置</string>
         </property>
        </widget>
       </item>
@@ -207,10 +193,10 @@
     <widget class="QLabel" name="announcementLabel">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>30</y>
-       <width>69</width>
-       <height>65</height>
+       <x>260</x>
+       <y>10</y>
+       <width>331</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="text">
