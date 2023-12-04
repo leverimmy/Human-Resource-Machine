@@ -1,2 +1,2 @@
 # HumanResourceMachine
-Repository for codes of Fundamentals of Programming, Fall 2023
+Repository for the codes of Fundamentals of Programming, Fall 2023
