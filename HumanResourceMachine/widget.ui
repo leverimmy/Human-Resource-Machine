@@ -13,12 +13,15 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>798</width>
      <height>600</height>
     </rect>
    </property>
@@ -26,18 +29,39 @@
     <number>0</number>
    </property>
    <widget class="QWidget" name="mainPage">
+    <property name="styleSheet">
+     <string notr="true">#mainPage{
+	
+	border-image: url(:/pictures/data/sol_rue.png);
+}
+#gameTitle{
+	font: 58pt &quot;Silver&quot;;
+}
+.QPushButton{
+	font: 27pt &quot;Silver&quot;;
+	
+	color: rgb(230, 230, 230);
+	border-image: url(:/pictures/data/red_walkway.png);
+}</string>
+    </property>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>380</y>
-       <width>91</width>
-       <height>181</height>
+       <x>590</x>
+       <y>330</y>
+       <width>114</width>
+       <height>191</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="selectMenu">
       <item>
        <widget class="QPushButton" name="startButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>开始游戏</string>
         </property>
@@ -45,6 +69,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="aboutButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>设置</string>
         </property>
@@ -52,6 +82,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="exitButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>退出游戏</string>
         </property>
@@ -59,43 +95,119 @@
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="gameTitle">
+     <property name="geometry">
+      <rect>
+       <x>165</x>
+       <y>40</y>
+       <width>561</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Silver</family>
+       <pointsize>58</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Human Resource Machine</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="levelPage">
+    <property name="font">
+     <font>
+      <family>Silver</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#levelPage{
+	border-image: url(:/pictures/data/ending_2a.png);
+}
+.QPushButton{
+	font: 500 48pt &quot;Silver&quot;;
+	selection-background-color: rgba(170, 0, 255, 125);
+	background-color: rgba(170, 0, 127, 170);
+}
+#backButton1{
+	font: 48pt &quot;Silver&quot;;
+	text-align:bottom;
+}
+#GridLayout{
+	alignment:center;
+}
+.QPushButton{
+	
+	color: rgb(222, 222, 222);
+	border-image: url(:/pictures/data/red_interior2.png);
+}</string>
+    </property>
     <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>329</y>
-       <width>254</width>
-       <height>101</height>
+       <x>230</x>
+       <y>190</y>
+       <width>351</width>
+       <height>241</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QPushButton" name="levelButton1">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>1</string>
+         <string>第一关</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
        <widget class="QPushButton" name="levelButton2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>2</string>
+         <string>第二关</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
        <widget class="QPushButton" name="levelButton4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>4</string>
+         <string>第四关</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="levelButton3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
-         <string>3</string>
+         <string>第三关</string>
         </property>
        </widget>
       </item>
@@ -104,25 +216,73 @@
     <widget class="QPushButton" name="backButton1">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>550</y>
-       <width>80</width>
-       <height>24</height>
+       <x>589</x>
+       <y>503</y>
+       <width>151</width>
+       <height>91</height>
       </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>Silver</family>
+       <pointsize>48</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
       <string>返回</string>
      </property>
+     <property name="iconSize">
+      <size>
+       <width>12</width>
+       <height>12</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="settingsPage">
+    <property name="styleSheet">
+     <string notr="true">*{
+	font: 33pt &quot;Silver&quot;;
+	
+	color: rgb(255, 255, 255);
+}
+#settingsPage{
+	
+	border-image: url(:/pictures/data/ending_3a.png);
+}
+#backButton2{
+	
+	background-color: rgb(19, 37, 72);
+}</string>
+    </property>
     <widget class="QPushButton" name="backButton2">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>500</y>
-       <width>80</width>
-       <height>24</height>
+       <x>529</x>
+       <y>473</y>
+       <width>111</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -135,7 +295,7 @@
        <x>240</x>
        <y>310</y>
        <width>80</width>
-       <height>20</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -147,8 +307,8 @@
       <rect>
        <x>360</x>
        <y>310</y>
-       <width>91</width>
-       <height>20</height>
+       <width>201</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -158,10 +318,10 @@
     <widget class="QLabel" name="BGM">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>280</y>
-       <width>80</width>
-       <height>16</height>
+       <x>129</x>
+       <y>215</y>
+       <width>191</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="text">
@@ -171,10 +331,10 @@
     <widget class="QLabel" name="volumnValue">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>280</y>
-       <width>21</width>
-       <height>16</height>
+       <x>310</x>
+       <y>215</y>
+       <width>41</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="text">
@@ -185,9 +345,9 @@
      <property name="geometry">
       <rect>
        <x>360</x>
-       <y>280</y>
+       <y>229</y>
        <width>201</width>
-       <height>20</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="maximum">
@@ -202,6 +362,42 @@
     </widget>
    </widget>
    <widget class="QWidget" name="gamePage">
+    <property name="styleSheet">
+     <string notr="true">#gamePage{
+	
+	border-image: url(:/pictures/data/ending_6a.png);
+}
+.QLabel{
+	font: 17pt &quot;Silver&quot;;
+	
+	background-color: rgba(255, 255, 255, 50);
+	qproperty-alignment: AlignCenter;
+	color: rgb(222, 222, 222);
+}
+#scrollArea{
+	
+	background-color: rgba(255, 255, 255, 25);
+	border-color: rgba(255, 255, 255, 25);
+}
+#cmdTextEdit{
+	background-color: rgba(255, 255, 255, 25);
+	
+	color: rgb(255, 170, 127);
+}
+#scrollAreaWidgetContents{
+	
+	background-color: rgba(255, 255, 255, 25);
+	border-color: rgba(255, 255, 255, 25);
+}
+.QPushButton{
+	font: 22pt &quot;Silver&quot;;
+	color: rgb(255, 170, 127);
+	border-image: url(:/pictures/data/green_interior.png);
+}
+#cmdTextEdit{
+	font: 20pt &quot;Silver&quot;;
+}</string>
+    </property>
     <widget class="QLabel" name="robotLabel">
      <property name="geometry">
       <rect>
@@ -219,20 +415,26 @@
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>10</y>
+       <y>20</y>
        <width>461</width>
-       <height>101</height>
+       <height>161</height>
       </rect>
      </property>
      <property name="text">
       <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
        <x>330</x>
-       <y>130</y>
+       <y>190</y>
        <width>261</width>
        <height>211</height>
       </rect>
@@ -265,9 +467,9 @@
      <property name="geometry">
       <rect>
        <x>490</x>
-       <y>370</y>
-       <width>80</width>
-       <height>24</height>
+       <y>420</y>
+       <width>111</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">
@@ -278,9 +480,9 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>570</y>
+       <y>523</y>
        <width>80</width>
-       <height>24</height>
+       <height>61</height>
       </rect>
      </property>
      <property name="text">
@@ -291,9 +493,9 @@
      <property name="geometry">
       <rect>
        <x>350</x>
-       <y>370</y>
+       <y>420</y>
        <width>121</width>
-       <height>20</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="text">

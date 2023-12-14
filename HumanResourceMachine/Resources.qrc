@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/pictures">
+        <file>data/cg_end_old.png</file>
+        <file>data/cg_green.png</file>
+        <file>data/cg_lightbulb1.png</file>
+        <file>data/cg_lightbulb2.png</file>
+        <file>data/ending_1a.png</file>
+        <file>data/ending_2a.png</file>
+        <file>data/ending_3a.png</file>
+        <file>data/ending_4a.png</file>
+        <file>data/ending_5a.png</file>
+        <file>data/ending_6a.png</file>
+        <file>data/red area pan no niko.png</file>
+        <file>data/remember1.png</file>
+        <file>data/remember2.png</file>
+        <file>data/remember3.png</file>
+        <file>data/remember4.png</file>
+        <file>data/remember5.png</file>
+        <file>data/sol_flight3.png</file>
+        <file>data/sol_flight4.png</file>
+        <file>data/sol_glenboat1.png</file>
+        <file>data/sol_glenboat2.png</file>
+        <file>data/sol_glenboat3.png</file>
+        <file>data/sol_glenboat4.png</file>
+        <file>data/sol_mine2.png</file>
+        <file>data/sol_rue.png</file>
+        <file>data/green_interior.png</file>
+        <file>data/red_interior2.png</file>
+        <file>data/red_walkway.png</file>
+    </qresource>
+    <qresource prefix="/audio"/>
+    <qresource prefix="/font">
+        <file>data/Silver.ttf</file>
+    </qresource>
+</RCC>
