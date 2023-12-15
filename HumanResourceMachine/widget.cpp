@@ -215,14 +215,29 @@ void Widget::on_confirmNextStepButton_clicked()
 
         QStringList tmp = ui->cmdTextEdit->toPlainText().split("\n");
 
+        // 除去每一行里的多余的空格，即，多个空格用 1 个空格代替
         for (const QString& element : tmp) {
-            if (element.size())
-                cmdLines.push_back(element.trimmed());
+            QString contains;
+            int len = element.length();
+            for (int i = 0; i < len; i++) {
+                // 连续的两个空格，则前一个省略
+                if (element[i] == ' ' && i < len - 1 && element[i + 1] == ' ')
+                    continue;
+                // 否则直接接到 contains 里
+                else
+                    contains.append(element[i]);
+            }
+            // 再除去首尾空格
+            contains = contains.trimmed();
+            // 如果 contains 非空
+            if (contains.size())
+                cmdLines.push_back(contains);
         }
 
         m = cmdLines.size();
 
-        if (m == 0) { // 输入的指令为空
+        // 输入的指令为空
+        if (m == 0) {
             printFailMessage();
             return;
         }
