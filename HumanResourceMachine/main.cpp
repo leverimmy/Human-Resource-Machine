@@ -7,15 +7,13 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
-    int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/data/Silver.ttf"));
-//    QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
-//    qDebug()<<"fontfamilies:"<<fontFamilies;
-//    if (fontFamilies.size() > 0)
-//    {
-//        QFont font;
-//        font.setFamily(fontFamilies[0]);
-//        a.setFont(font);
-//    }
+    // int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/Silver.ttf"));
+    // QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    // qDebug()<<"fontfamilies:"<<fontFamilies;
+    // fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/IPix.ttf"));
+    // fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    // qDebug()<<"fontfamilies:"<<fontFamilies;
+    QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/Silver.ttf"));
     Widget w;
     w.show();
     return a.exec();

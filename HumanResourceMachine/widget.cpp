@@ -8,7 +8,7 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
 
     startSound = new QSoundEffect();
-    startSound->setSource(QUrl::fromLocalFile(":/audio/data/bgm.wav"));
+    startSound->setSource(QUrl::fromLocalFile(":/audio/res/bgm.wav"));
     startSound->setLoopCount(QSoundEffect::Infinite);
     startSound->setVolume(0.5f);
     startSound->play();
@@ -215,29 +215,14 @@ void Widget::on_confirmNextStepButton_clicked()
 
         QStringList tmp = ui->cmdTextEdit->toPlainText().split("\n");
 
-        // 除去每一行里的多余的空格，即，多个空格用 1 个空格代替
         for (const QString& element : tmp) {
-            QString contains;
-            int len = element.length();
-            for (int i = 0; i < len; i++) {
-                // 连续的两个空格，则前一个省略
-                if (element[i] == ' ' && i < len - 1 && element[i + 1] == ' ')
-                    continue;
-                // 否则直接接到 contains 里
-                else
-                    contains.append(element[i]);
-            }
-            // 再除去首尾空格
-            contains = contains.trimmed();
-            // 如果 contains 非空
-            if (contains.size())
-                cmdLines.push_back(contains);
+            if (element.size())
+                cmdLines.push_back(element);
         }
 
         m = cmdLines.size();
 
-        // 输入的指令为空
-        if (m == 0) {
+        if (m == 0) { // 输入的指令为空
             printFailMessage();
             return;
         }
@@ -265,36 +250,8 @@ void Widget::on_confirmNextStepButton_clicked()
         }
 
         QString cmd = cmdLines[currentCommand - 1].split(' ')[0];
-        // 参数 x，x == -1 表示没有参数
-        int x = -1;
-        // 有 3 段，则有 2 个参数，参数过多
-        if (cmdLines[currentCommand - 1].split(' ').length() >= 3) {
-            printErrorMessage();
-            return;
-        }
-        // 有 2 段，那么取出参数 x
-        if (cmdLines[currentCommand - 1].split(' ').length() == 2) {
-            QString xString = cmdLines[currentCommand - 1].split(' ')[1];
-            int len = xString.length(), first = 1;
-            for (int i = 0; i < len; i++) {
-                if (!xString[i].isDigit()){
-                    printErrorMessage();
-                    return;
-                } else {
-                    if (first) {
-                        x = 0;
-                        first = 0;
-                    }
-                    x = x * 10 + xString[i].digitValue();
-                }
-            }
-        }
         if (valid(cmd)) {
             if (cmd == "inbox") {
-                if (x != -1) {
-                    printErrorMessage();
-                    return;
-                }
                 if (qIn.empty()) {
                     checkResult();
                 }
@@ -302,38 +259,44 @@ void Widget::on_confirmNextStepButton_clicked()
                 qIn.dequeue();
                 existCurrentBlock = true;
             } else if (cmd == "outbox") {
-                if (existCurrentBlock == false || x != -1) {
+                if (existCurrentBlock == false) {
                     printErrorMessage();
                     return;
                 }
                 qOut.enqueue(currentBlock);
                 existCurrentBlock = false;
             } else if (cmd == "add") {
-                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false || x == -1) {
+                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
+                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock += vec[x];
             } else if (cmd == "sub") {
-                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false || x == -1) {
+                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
+                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock -= vec[x];
             } else if (cmd == "copyto") {
-                if (existCurrentBlock == false || x >= vec.size() || x == -1) {
+                qDebug() << cmdLines[currentCommand - 1] << '\n';
+                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
+                if (existCurrentBlock == false || x >= vec.size()) {
                     printErrorMessage();
                     return;
                 }
                 vec[x] = currentBlock;
                 existVec[x] = true;
             } else if (cmd == "copyfrom") {
-                if (x >= vec.size() || existVec[x] == false || x == -1) {
+                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
+                if (x >= vec.size() || existVec[x] == false) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock = vec[x];
             } else if (cmd == "jump") {
+                int x = cmdLines[currentCommand].split(' ')[1].toInt();
                 if (x > m) {
                     printErrorMessage();
                     return;
@@ -342,7 +305,8 @@ void Widget::on_confirmNextStepButton_clicked()
                 ui->currentStepLabel->setText(cmdLines[currentCommand - 1]);
                 return;
             } else if (cmd == "jumpifzero") {
-                if (existCurrentBlock == false || x > m || x == -1) {
+                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
+                if (existCurrentBlock == false || x > m) {
                     printErrorMessage();
                     return;
                 }
@@ -404,9 +368,10 @@ void Widget::drawStatus() {
 
     for (int i = 0; i < n; i++) {
         if (existVec[i] == 0) {
-            str.append("-");
+            str.append("- ");
         } else {
             str.append(QString::number(vec[i]));
+            str.append(" ");
         }
     }
 
@@ -429,7 +394,7 @@ void Widget::setUpBackground() {
         str.append(QString::number(tmp1.front()));
         tmp1.dequeue();
         if(!tmp1.empty()) {
-            str.append(" ,");
+            str.append(", ");
         }
     }
 
@@ -445,7 +410,7 @@ void Widget::setUpBackground() {
         str.append(QString::number(tmp1.front()));
         tmp1.dequeue();
         if(!tmp1.empty()) {
-            str.append(" ,");
+            str.append(", ");
         }
     }
 
@@ -576,6 +541,7 @@ bool Widget::valid(QString test) {
     }
     return false;
 }
+
 
 void Widget::renderLevelButton(int l) {
     ui->levelButton2->setDisabled(true);

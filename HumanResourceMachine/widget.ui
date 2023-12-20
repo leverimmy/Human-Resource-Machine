@@ -32,7 +32,7 @@
     <property name="styleSheet">
      <string notr="true">#mainPage{
 	
-	border-image: url(:/pictures/data/sol_rue.png);
+	border-image: url(:/pictures/res/sol_rue.png);
 }
 #gameTitle{
 	font: 58pt &quot;Silver&quot;;
@@ -41,7 +41,7 @@
 	font: 27pt &quot;Silver&quot;;
 	
 	color: rgb(230, 230, 230);
-	border-image: url(:/pictures/data/red_walkway.png);
+	border-image: url(:/pictures/res/red_walkway.png);
 }</string>
     </property>
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -49,7 +49,7 @@
       <rect>
        <x>590</x>
        <y>330</y>
-       <width>114</width>
+       <width>111</width>
        <height>191</height>
       </rect>
      </property>
@@ -129,7 +129,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">#levelPage{
-	border-image: url(:/pictures/data/ending_2a.png);
+	border-image: url(:/pictures/res/ending_2a.png);
 }
 .QPushButton{
 	font: 500 48pt &quot;Silver&quot;;
@@ -146,7 +146,7 @@
 .QPushButton{
 	
 	color: rgb(222, 222, 222);
-	border-image: url(:/pictures/data/red_interior2.png);
+	border-image: url(:/pictures/res/red_interior2.png);
 }</string>
     </property>
     <widget class="QWidget" name="gridLayoutWidget">
@@ -269,7 +269,7 @@
 }
 #settingsPage{
 	
-	border-image: url(:/pictures/data/ending_3a.png);
+	border-image: url(:/pictures/res/ending_3a.png);
 }
 #backButton2{
 	
@@ -365,7 +365,7 @@
     <property name="styleSheet">
      <string notr="true">#gamePage{
 	
-	border-image: url(:/pictures/data/ending_6a.png);
+	border-image: url(:/pictures/res/ending_6a.png);
 }
 .QLabel{
 	font: 17pt &quot;Silver&quot;;
@@ -392,7 +392,7 @@
 .QPushButton{
 	font: 22pt &quot;Silver&quot;;
 	color: rgb(255, 170, 127);
-	border-image: url(:/pictures/data/green_interior.png);
+	border-image: url(:/pictures/res/green_interior.png);
 }
 #cmdTextEdit{
 	font: 20pt &quot;Silver&quot;;

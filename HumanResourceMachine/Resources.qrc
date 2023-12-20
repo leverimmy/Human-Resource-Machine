@@ -1,35 +1,49 @@
 <RCC>
     <qresource prefix="/pictures">
-        <file>data/cg_end_old.png</file>
-        <file>data/cg_green.png</file>
-        <file>data/cg_lightbulb1.png</file>
-        <file>data/cg_lightbulb2.png</file>
-        <file>data/ending_1a.png</file>
-        <file>data/ending_2a.png</file>
-        <file>data/ending_3a.png</file>
-        <file>data/ending_4a.png</file>
-        <file>data/ending_5a.png</file>
-        <file>data/ending_6a.png</file>
-        <file>data/red area pan no niko.png</file>
-        <file>data/remember1.png</file>
-        <file>data/remember2.png</file>
-        <file>data/remember3.png</file>
-        <file>data/remember4.png</file>
-        <file>data/remember5.png</file>
-        <file>data/sol_flight3.png</file>
-        <file>data/sol_flight4.png</file>
-        <file>data/sol_glenboat1.png</file>
-        <file>data/sol_glenboat2.png</file>
-        <file>data/sol_glenboat3.png</file>
-        <file>data/sol_glenboat4.png</file>
-        <file>data/sol_mine2.png</file>
-        <file>data/sol_rue.png</file>
-        <file>data/green_interior.png</file>
-        <file>data/red_interior2.png</file>
-        <file>data/red_walkway.png</file>
+        <file>res/cg_end_old.png</file>
+        <file>res/cg_green.png</file>
+        <file>res/cg_lightbulb1.png</file>
+        <file>res/cg_lightbulb2.png</file>
+        <file>res/ending_1a.png</file>
+        <file>res/ending_2a.png</file>
+        <file>res/ending_3a.png</file>
+        <file>res/ending_4a.png</file>
+        <file>res/ending_5a.png</file>
+        <file>res/ending_6a.png</file>
+        <file>res/green_dirt.png</file>
+        <file>res/green_grass1 old.png</file>
+        <file>res/green_interior.png</file>
+        <file>res/red area pan no niko.png</file>
+        <file>res/red_interior2.png</file>
+        <file>res/red_interior3.png</file>
+        <file>res/red_start_carpet.png</file>
+        <file>res/red_start_counter.png</file>
+        <file>res/red_walkway.png</file>
+        <file>res/remember1.png</file>
+        <file>res/remember2.png</file>
+        <file>res/remember3.png</file>
+        <file>res/remember4.png</file>
+        <file>res/remember5.png</file>
+        <file>res/ruins_interior.png</file>
+        <file>res/sol_flight3.png</file>
+        <file>res/sol_flight4.png</file>
+        <file>res/sol_glenboat1.png</file>
+        <file>res/sol_glenboat2.png</file>
+        <file>res/sol_glenboat3.png</file>
+        <file>res/sol_glenboat4.png</file>
+        <file>res/sol_mine2.png</file>
+        <file>res/sol_rue.png</file>
+        <file>res/start_carpet.png</file>
+        <file>res/start_carpet_light.png</file>
+        <file>res/start_carpet2.png</file>
+        <file>res/start_interior.png</file>
+        <file>res/start_interior2.png</file>
     </qresource>
-    <qresource prefix="/audio"/>
+    <qresource prefix="/audio">
+        <file>res/bgm.wav</file>
+    </qresource>
     <qresource prefix="/font">
-        <file>data/Silver.ttf</file>
+        <file>res/Silver.ttf</file>
+        <file>res/IPix.ttf</file>
     </qresource>
 </RCC>
