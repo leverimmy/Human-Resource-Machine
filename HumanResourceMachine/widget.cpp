@@ -12,6 +12,7 @@ Widget::Widget(QWidget *parent)
     startSound->setLoopCount(QSoundEffect::Infinite);
     startSound->setVolume(0.5f);
     startSound->play();
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 Widget::~Widget()
@@ -209,6 +210,14 @@ void Widget::on_levelButton4_clicked()
 
 }
 
+int myToInt(QString str) {
+    for (auto x : str) {
+        if (!x.isDigit())
+            return -1;
+    }
+    return str.toInt();
+}
+
 void Widget::on_confirmNextStepButton_clicked()
 {
     if (!doing) {
@@ -242,16 +251,21 @@ void Widget::on_confirmNextStepButton_clicked()
                     level = currentLevel;
                 if (level >= 1) {
                     ui->levelButton2->setDisabled(false);
-                } else if (level >= 2) {
+                }
+                if (level >= 2) {
                     ui->levelButton3->setDisabled(false);
                 }
             }
             return;
         }
-
+        int argc = cmdLines[currentCommand - 1].split(' ').size();
         QString cmd = cmdLines[currentCommand - 1].split(' ')[0];
         if (valid(cmd)) {
             if (cmd == "inbox") {
+                if (argc != 1) {
+                    printErrorMessage();
+                    return;
+                }
                 if (qIn.empty()) {
                     checkResult();
                 }
@@ -259,45 +273,45 @@ void Widget::on_confirmNextStepButton_clicked()
                 qIn.dequeue();
                 existCurrentBlock = true;
             } else if (cmd == "outbox") {
-                if (existCurrentBlock == false) {
+                if (existCurrentBlock == false || argc != 1) {
                     printErrorMessage();
                     return;
                 }
                 qOut.enqueue(currentBlock);
                 existCurrentBlock = false;
             } else if (cmd == "add") {
-                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
-                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (existCurrentBlock == false || x >= vec.size() || x < 0 || existVec[x] == false || argc != 2) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock += vec[x];
             } else if (cmd == "sub") {
-                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
-                if (existCurrentBlock == false || x >= vec.size() || existVec[x] == false) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (existCurrentBlock == false || x >= vec.size() || x < 0 || existVec[x] == false || argc != 2) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock -= vec[x];
             } else if (cmd == "copyto") {
-                qDebug() << cmdLines[currentCommand - 1] << '\n';
-                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
-                if (existCurrentBlock == false || x >= vec.size()) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (existCurrentBlock == false || x >= vec.size() || x < 0 || argc != 2) {
                     printErrorMessage();
                     return;
                 }
                 vec[x] = currentBlock;
                 existVec[x] = true;
             } else if (cmd == "copyfrom") {
-                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
-                if (x >= vec.size() || existVec[x] == false) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (x >= vec.size() || x < 0 || existVec[x] == false || argc != 2) {
                     printErrorMessage();
                     return;
                 }
                 currentBlock = vec[x];
+                existCurrentBlock = true;
             } else if (cmd == "jump") {
-                int x = cmdLines[currentCommand].split(' ')[1].toInt();
-                if (x > m) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (x > m || x <= 0 || argc != 2) {
                     printErrorMessage();
                     return;
                 }
@@ -305,8 +319,8 @@ void Widget::on_confirmNextStepButton_clicked()
                 ui->currentStepLabel->setText(cmdLines[currentCommand - 1]);
                 return;
             } else if (cmd == "jumpifzero") {
-                int x = cmdLines[currentCommand - 1].split(' ')[1].toInt();
-                if (existCurrentBlock == false || x > m) {
+                int x = myToInt(cmdLines[currentCommand - 1].split(' ')[1]);
+                if (existCurrentBlock == false || x > m || x <= 0 || argc != 2) {
                     printErrorMessage();
                     return;
                 }
@@ -337,7 +351,7 @@ void Widget::on_confirmNextStepButton_clicked()
 
 void Widget::drawStatus() {
     if (!existCurrentBlock) {
-        ui->robotLabel->setText("X");
+        ui->robotLabel->setText("无");
     } else {
         ui->robotLabel->setText(QString::number(currentBlock));
     }
@@ -368,14 +382,17 @@ void Widget::drawStatus() {
 
     for (int i = 0; i < n; i++) {
         if (existVec[i] == 0) {
-            str.append("- ");
+            str.append("空 ");
         } else {
             str.append(QString::number(vec[i]));
             str.append(" ");
         }
     }
 
-    ui->vacantTextLabel->setText(str);
+    if(!n) {
+        ui->vacantTextLabel->setText("本关卡无可用空地");
+    } else
+        ui->vacantTextLabel->setText(str);
 }
 
 
@@ -394,7 +411,7 @@ void Widget::setUpBackground() {
         str.append(QString::number(tmp1.front()));
         tmp1.dequeue();
         if(!tmp1.empty()) {
-            str.append(", ");
+            str.append(" ,");
         }
     }
 
@@ -410,7 +427,7 @@ void Widget::setUpBackground() {
         str.append(QString::number(tmp1.front()));
         tmp1.dequeue();
         if(!tmp1.empty()) {
-            str.append(", ");
+            str.append(" ,");
         }
     }
 
