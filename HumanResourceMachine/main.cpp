@@ -1,18 +1,11 @@
 #include "widget.h"
 
 #include <QApplication>
+#include <QFontDatabase>
 
-#include<QFontDatabase>
-int main(int argc, char *argv[])
-{
-
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    // int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/Silver.ttf"));
-    // QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
-    // qDebug()<<"fontfamilies:"<<fontFamilies;
-    // fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/IPix.ttf"));
-    // fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
-    // qDebug()<<"fontfamilies:"<<fontFamilies;
+    // 对当前窗口安装字体
     QFontDatabase::addApplicationFont(QStringLiteral(":/font/res/Silver.ttf"));
     Widget w;
     w.show();
