@@ -404,23 +404,26 @@ void Widget::setUpBackground() {
     ui->confirmNextStepButton->setText("确认");
     // 输入序列
     QString inString = "输入序列：[";
-    for (auto element : qIn) {
+    for (int i = 0; i < qIn.size(); i++) {
+        int element = qIn.at(i);
         inString.append(QString::number(element));
-        element != qIn.back() ? inString.append(", ") : inString.append("]\n");
+        i + 1 != qIn.size() ? inString.append(", ") : inString.append("]\n");
     }
     // 输出序列
     QString outString = "目标输出序列：[";
-    for (auto element : qAns) {
+    for (int i = 0; i < qAns.size(); i++) {
+        int element = qAns.at(i);
         outString.append(QString::number(element));
-        element != qAns.back() ? outString.append(", ") : outString.append("]\n");
+        i + 1 != qAns.size() ? outString.append(", ") : outString.append("]\n");
     }
     // 空地可用情况
     QString vacantSpacesString = "可用空地数：" + QString::number(n) + "\n";
     // 当前关卡指令集
     QString cmdSetString = "可用指令集：[";
-    for (auto element : cmdSet) {
+    for (int i = 0; i < cmdSet.size(); i++) {
+        QString element = cmdSet.at(i);
         cmdSetString.append(element);
-        element != cmdSet.back() ? cmdSetString.append(", ") : cmdSetString.append("]\n");
+        i + 1 != cmdSet.size() ? cmdSetString.append(", ") : cmdSetString.append("]\n");
     }
     ui->announcementLabel->setText(inString + outString + vacantSpacesString + cmdSetString);
     drawStatus();

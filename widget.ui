@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="mainPage">
     <property name="styleSheet">
@@ -36,6 +36,7 @@
 }
 #gameTitle{
 	font: 58pt &quot;Silver&quot;;
+	color: rgb(231, 255, 74);
 }
 .QPushButton{
 	font: 27pt &quot;Silver&quot;;
@@ -98,8 +99,8 @@
     <widget class="QLabel" name="gameTitle">
      <property name="geometry">
       <rect>
-       <x>165</x>
-       <y>40</y>
+       <x>140</x>
+       <y>30</y>
        <width>561</width>
        <height>81</height>
       </rect>
@@ -401,7 +402,7 @@
     <widget class="QLabel" name="robotLabel">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>120</x>
        <y>240</y>
        <width>171</width>
        <height>71</height>
@@ -414,9 +415,9 @@
     <widget class="QLabel" name="announcementLabel">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>120</x>
        <y>20</y>
-       <width>481</width>
+       <width>511</width>
        <height>161</height>
       </rect>
      </property>
@@ -505,7 +506,7 @@
     <widget class="QLabel" name="inputTextLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>20</x>
        <y>70</y>
        <width>69</width>
        <height>401</height>
@@ -518,8 +519,8 @@
     <widget class="QLabel" name="outputTextLabel">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>67</y>
+       <x>670</x>
+       <y>70</y>
        <width>69</width>
        <height>401</height>
       </rect>
@@ -531,7 +532,7 @@
     <widget class="QLabel" name="vacantTextLabel">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>120</x>
        <y>370</y>
        <width>171</width>
        <height>71</height>
@@ -547,7 +548,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>120</x>
        <y>339</y>
        <width>171</width>
        <height>31</height>
@@ -573,7 +574,7 @@
     <widget class="QLabel" name="currentBlockLabel">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>120</x>
        <y>209</y>
        <width>171</width>
        <height>31</height>
