@@ -340,24 +340,24 @@ int myToInt(QString str) {
 
 程序共有四个界面。进入游戏将显示主界面：
 
-<div align=center> <img src="./pics/MainPage.png" width = 400>
+<img src="./pics/MainPage.png" width = 400>
 
 
 通过此界面可以前往关卡选择界面，设置界面或者退出游戏。
 
 从关卡选择界面可以前往四个关卡，或者返回主界面。
 
-<div align=center> <img src="./pics/LevelPage.png" width = 400>
+<img src="./pics/LevelPage.png" width = 400>
 
 
 游戏界面显示了关卡的当前状态。玩家可以在页面中央的文本框中输入指令。
 
-<div align=center> <img src="./pics/GamePage.png" width = 400>
+<img src="./pics/GamePage.png" width = 400>
 
 
 设置界面可以调整游戏背景音乐的音量。
 
-<div align=center> <img src="./pics/AboutPage.png" width = 400>
+<img src="./pics/AboutPage.png" width = 400>
 
 
 ## 游戏测试
@@ -366,231 +366,231 @@ int myToInt(QString str) {
 
 ### inbox
 
-<div align=center> <img src="./pics/Inbox1.png" width = 400>
+<img src="./pics/Inbox1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Inbox2.png" width = 400>
+<img src="./pics/Inbox2.png" width = 400>
 
 
 ### outbox
 
-<div align=center> <img src="./pics/Outbox1.png" width = 400>
+<img src="./pics/Outbox1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Outbox2.png" width = 400>
+<img src="./pics/Outbox2.png" width = 400>
 
 
 当前积木不存在时，程序会报错。
 
-<div align=center> <img src="./pics/OutboxErr1_1.png" width = 400>
+<img src="./pics/OutboxErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/OutboxErr1_2.png" width = 400>
+<img src="./pics/OutboxErr1_2.png" width = 400>
 
 
 ### add
 
-<div align=center> <img src="./pics/Add1.png" width = 400>
+<img src="./pics/Add1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Add2.png" width = 400>
+<img src="./pics/Add2.png" width = 400>
 
 
 当前积木不存在时，程序会报错。
 
-<div align=center> <img src="./pics/AddErr1_1.png" width = 400>
+<img src="./pics/AddErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/AddErr1_2.png" width = 400>
+<img src="./pics/AddErr1_2.png" width = 400>
 
 
 目标空地不存在积木时，程序会报错。
 
-<div align=center> <img src="./pics/AddErr2_1.png" width = 400>
+<img src="./pics/AddErr2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/AddErr2_2.png" width = 400>
+<img src="./pics/AddErr2_2.png" width = 400>
 
 
 ### sub
 
-<div align=center> <img src="./pics/Sub1.png" width = 400>
+<img src="./pics/Sub1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Sub2.png" width = 400>
+<img src="./pics/Sub2.png" width = 400>
 
 
 当前积木不存在时，程序会报错。
 
-<div align=center> <img src="./pics/SubErr1_1.png" width = 400>
+<img src="./pics/SubErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/SubErr1_2.png" width = 400>
+<img src="./pics/SubErr1_2.png" width = 400>
 
 
 目标空地不存在积木时，程序会报错。
 
-<div align=center> <img src="./pics/SubErr2_1.png" width = 400>
+<img src="./pics/SubErr2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/SubErr2_2.png" width = 400>
+<img src="./pics/SubErr2_2.png" width = 400>
 
 
 ### copyto
 
-<div align=center> <img src="./pics/Copyto1.png" width = 400>
+<img src="./pics/Copyto1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Copyto2.png" width = 400>
+<img src="./pics/Copyto2.png" width = 400>
 
 
 当前积木不存在时，程序会报错。
 
-<div align=center> <img src="./pics/CopytoErr1_1.png" width = 400>
+<img src="./pics/CopytoErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/CopytoErr1_2.png" width = 400>
+<img src="./pics/CopytoErr1_2.png" width = 400>
 
 
 目标空地不存在时，程序会报错。
 
-<div align=center> <img src="./pics/CopytoErr2_1.png" width = 400>
+<img src="./pics/CopytoErr2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/CopytoErr2_2.png" width = 400>
+<img src="./pics/CopytoErr2_2.png" width = 400>
 
 
 ### copyfrom
 
-<div align=center> <img src="./pics/Copyfrom1.png" width = 400>
+<img src="./pics/Copyfrom1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Copyfrom2.png" width = 400>
+<img src="./pics/Copyfrom2.png" width = 400>
 
 
 目标空地没有积木时，程序会报错。
 
-<div align=center> <img src="./pics/CopyfromErr1_1.png" width = 400>
+<img src="./pics/CopyfromErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/CopyfromErr1_2.png" width = 400>
+<img src="./pics/CopyfromErr1_2.png" width = 400>
 
 
 目标空地不存在时，程序会报错。
 
-<div align=center> <img src="./pics/CopyfromErr2_1.png" width = 400>
+<img src="./pics/CopyfromErr2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/CopyfromErr2_2.png" width = 400>
+<img src="./pics/CopyfromErr2_2.png" width = 400>
 
 
 ### jump
 
-<div align=center> <img src="./pics/Jump1.png" width = 400>
+<img src="./pics/Jump1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Jump2.png" width = 400>
+<img src="./pics/Jump2.png" width = 400>
 
 
-<div align=center> <img src="./pics/Jump3.png" width = 400>
+<img src="./pics/Jump3.png" width = 400>
 
 
 目标指令不存在时，程序会报错。
 
-<div align=center> <img src="./pics/JumpErr1_1.png" width = 400>
+<img src="./pics/JumpErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/JumpErr1_2.png" width = 400>
+<img src="./pics/JumpErr1_2.png" width = 400>
 
 
 ### jumpifzero
 
-<div align=center> <img src="./pics/Jumpifzero1.png" width = 400>
+<img src="./pics/Jumpifzero1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Jumpifzero2.png" width = 400>
+<img src="./pics/Jumpifzero2.png" width = 400>
 
 
-<div align=center> <img src="./pics/Jumpifzero3.png" width = 400>
+<img src="./pics/Jumpifzero3.png" width = 400>
 
 
 当前方块不为0时，程序不会做任何操作。
 
-<div align=center> <img src="./pics/Jumpifzero4.png" width = 400>
+<img src="./pics/Jumpifzero4.png" width = 400>
 
 
-<div align=center> <img src="./pics/Jumpifzero5.png" width = 400>
+<img src="./pics/Jumpifzero5.png" width = 400>
 
 
 目标指令不存在时，程序会报错。
 
-<div align=center> <img src="./pics/JumpifzeroErr1_1.png" width = 400>
+<img src="./pics/JumpifzeroErr1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/JumpifzeroErr1_2.png" width = 400>
+<img src="./pics/JumpifzeroErr1_2.png" width = 400>
 
 
 当前积木不存在时，程序会报错。
 
-<div align=center> <img src="./pics/JumpifzeroErr2_1.png" width = 400>
+<img src="./pics/JumpifzeroErr2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/JumpifzeroErr2_2.png" width = 400>
+<img src="./pics/JumpifzeroErr2_2.png" width = 400>
 
 
 ### 其他异常情况
 
 出现未定义指令
 
-<div align=center> <img src="./pics/Err1_1.png" width = 400>
+<img src="./pics/Err1_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Err1_2.png" width = 400>
+<img src="./pics/Err1_2.png" width = 400>
 
 
 指令参数错误（为负数）
 
-<div align=center> <img src="./pics/Err2_1.png" width = 400>
+<img src="./pics/Err2_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Err2_2.png" width = 400>
+<img src="./pics/Err2_2.png" width = 400>
 
 
 指令参数错误（不为整数）
 
-<div align=center> <img src="./pics/Err3_1.png" width = 400>
+<img src="./pics/Err3_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Err3_2.png" width = 400>
+<img src="./pics/Err3_2.png" width = 400>
 
 
 指令参数错误（参数数量过多）
 
-<div align=center> <img src="./pics/Err4_1.png" width = 400>
+<img src="./pics/Err4_1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Err4_2.png" width = 400>
+<img src="./pics/Err4_2.png" width = 400>
 
 
 除此以外，本程序还可以自动去除玩家输入中的空行以及多余的空格，成功识别出指令及参数。
 
-<div align=center> <img src="./pics/Space1.png" width = 400>
+<img src="./pics/Space1.png" width = 400>
 
 
-<div align=center> <img src="./pics/Space2.png" width = 400>
+<img src="./pics/Space2.png" width = 400>
 
 
-<div align=center> <img src="./pics/Space3.png" width = 400>
+<img src="./pics/Space3.png" width = 400>
 
 
-<div align=center> <img src="./pics/Space4.png" width = 400>
+<img src="./pics/Space4.png" width = 400>
 
 
 ## 自由创新关卡
 
 我们所设计的自由创新关卡如下：
 
-<div align=center> <img src="./pics/NewLevel1.png" width = 400>
+<img src="./pics/NewLevel1.png" width = 400>
 
 
 若要游玩这一关卡，可以创建一个 `.json` 文件，内容如下：
@@ -623,23 +623,23 @@ outbox
 
 每次 `jump` 后，前两块空地，以及当前积木的数字都会加倍，而2号空地则保持 `1` 不变。
 
-<div align=center> <img src="./pics/NewLevel2.png" width = 400>
+<img src="./pics/NewLevel2.png" width = 400>
 
 
 这一进程将持续到数字自然溢出，变为 `-2147483648`。
 
-<div align=center> <img src="./pics/NewLevel3.png" width = 400>
+<img src="./pics/NewLevel3.png" width = 400>
 
 
-<div align=center> <img src="./pics/NewLevel4.png" width = 400>
+<img src="./pics/NewLevel4.png" width = 400>
 
 
-<div align=center> <img src="./pics/NewLevel5.png" width = 400>
+<img src="./pics/NewLevel5.png" width = 400>
 
 
 随后，在执行 `add 0` 后，当前积木将变为 `0`，满足 `jumpifzero` 的要求。
 
-<div align=center> <img src="./pics/NewLevel6.png" width = 400>
+<img src="./pics/NewLevel6.png" width = 400>
 
 
 最后，通过 `copyfrom 1` 后 `sub 2` 将当前积木由 `-2147483648` 变为 `2147483647` 后输出，全过程仅需 10 行代码。
