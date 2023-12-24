@@ -153,7 +153,7 @@ void Widget::on_levelButton4_clicked() {
 }
 ```
 
-它所接受的`.json`文件应格式如下：
+它所接受的 `.json` 文件应格式如下：
 
 ```json
 {
@@ -164,7 +164,20 @@ void Widget::on_levelButton4_clicked() {
 }
 ```
 
-其中 `input`表示初始输入序列，`output` 表示目标输出序列，`vacancy` 表示可用空地数量，`cmd` 表示可用指令集。
+仓库中的 `example.json` 即为此例。其中 `input`表示初始输入序列，`output` 表示目标输出序列，`vacancy` 表示可用空地数量，`cmd` 表示可用指令集。
+
+指令集中的数字对应关系如下：
+
+| 指令集中数字 |    指令    |
+| :----------: | :--------: |
+|      0       |   inbox    |
+|      1       |   outbox   |
+|      2       |  copyfrom  |
+|      3       |   copyto   |
+|      4       |    add     |
+|      5       |    sub     |
+|      6       |    jump    |
+|      7       | jumpifzero |
 
 成功读取后，函数将 `input` 序列存入队列 `qIn` 中，将 `output` 序列存入队列 `qAns` 中，根据 `vacancy` 的值设置向量 `vec` 与 `existVec` 的大小，并根据 `cmd` 设置关卡的可用指令集。
 
@@ -604,7 +617,7 @@ int myToInt(QString str) {
 }
 ```
 
-这一关卡的思路很简单，就是通过累加的方式将 `1` 变为`2147483647`。目标过大，直接 `add` 显然无法解决问题，考虑利用空位存储当前数字，每次将其加倍，然而也需要三十余次加倍的过程。为节省输入指令的量，可以考虑使用 `jump` 与 `jumpifzero`。
+仓库中的 `extra_level.json` 即为此例。这一关卡的思路很简单，就是通过累加的方式将 `1` 变为`2147483647`。目标过大，直接 `add` 显然无法解决问题，考虑利用空位存储当前数字，每次将其加倍，然而也需要三十余次加倍的过程。为节省输入指令的量，可以考虑使用 `jump` 与 `jumpifzero`。
 
 一个可行的输入指令序列如下：
 
