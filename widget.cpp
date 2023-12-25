@@ -210,6 +210,7 @@ void Widget::on_levelButton4_clicked() {
 }
 
 
+// 从文件读入玩家的程序
 void Widget::readCommandsFromFile() {
     QString filePathName = QFileDialog::getOpenFileName(this, "打开", "./", "TXT 文件 (*.txt)");
     if (filePathName.isEmpty()) {
