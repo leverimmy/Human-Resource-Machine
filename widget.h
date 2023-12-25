@@ -73,5 +73,6 @@ private:
     void printErrorMessage();
     bool checkResult();
     void renderLevelButton(int);
+    void readCommandsFromFile();
 };
 #endif // WIDGET_H

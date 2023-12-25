@@ -15,6 +15,7 @@ Widget::Widget(QWidget *parent): QWidget(parent), ui(new Ui::Widget) {
     backgroundMusic->play();
     // 设置当前页面为 0 号页面（即主页面）
     ui->stackedWidget->setCurrentIndex(0);
+    ui->cmdTextEdit->setPlaceholderText("留空以从文件读入用户程序...");
 }
 
 
@@ -209,6 +210,20 @@ void Widget::on_levelButton4_clicked() {
 }
 
 
+void Widget::readCommandsFromFile() {
+    QString filePathName = QFileDialog::getOpenFileName(this, "打开", "./", "TXT 文件 (*.txt)");
+    if (filePathName.isEmpty()) {
+        QMessageBox::warning(this, "警告", "已取消选择用户程序！");
+    } else {
+        QFile openFile(filePathName);
+        openFile.open(QIODevice::ReadOnly);
+        QByteArray fileContents = openFile.readAll();
+        openFile.close();
+        ui->cmdTextEdit->setText(QString::fromUtf8(fileContents));
+    }
+}
+
+
 // 判断一个字符串是否为自然数
 int myToInt(QString str) {
     for (auto x : str) {
@@ -246,7 +261,7 @@ void Widget::on_confirmNextStepButton_clicked() {
         m = cmdLines.size();
         // 输入的指令为空
         if (m == 0) {
-            printFailMessage();
+            readCommandsFromFile();
             return;
         }
         currentCommand = 1;
