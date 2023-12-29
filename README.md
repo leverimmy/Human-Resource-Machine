@@ -5,26 +5,34 @@ Repository for the codes of Fundamentals of Programming, 2023 Fall
 **目录**
 
 - [Human Resource Machine](#human-resource-machine)
+	- [构建环境](#构建环境)
 	- [设计思路](#设计思路)
 	- [工程结构](#工程结构)
 	- [具体实现](#具体实现)
-		- [设置关卡信息](#设置关卡信息)
-		- [执行玩家输入的指令](#执行玩家输入的指令)
-		- [判断输入的指令是否合法](#判断输入的指令是否合法)
+	  - [设置关卡信息](#设置关卡信息)
+	  - [执行玩家输入的指令](#执行玩家输入的指令)
+	  - [判断输入的指令是否合法](#判断输入的指令是否合法)
 	- [界面设计](#界面设计)
 	- [游戏测试](#游戏测试)
-		- [inbox](#inbox)
-		- [outbox](#outbox)
-		- [add](#add)
-		- [sub](#sub)
-		- [copyto](#copyto)
-		- [copyfrom](#copyfrom)
-		- [jump](#jump)
-		- [jumpifzero](#jumpifzero)
-		- [从文件读入指令](#从文件读入指令)
-		- [其他异常情况](#其他异常情况)
+	  - [inbox](#inbox)
+	  - [outbox](#outbox)
+	  - [add](#add)
+	  - [sub](#sub)
+	  - [copyto](#copyto)
+	  - [copyfrom](#copyfrom)
+	  - [jump](#jump)
+	  - [jumpifzero](#jumpifzero)
+	  - [从文件读入指令](#从文件读入指令)
+	  - [其他异常情况](#其他异常情况)
 	- [自由创新关卡](#自由创新关卡)
 	- [小组分工](#小组分工)
+	
+
+## 构建环境
+
+Qt Creator 12.0.1 (Enterprise)
+
+Qt 6.6.0 以及配套版本的 MinGW 编译器
 
 ## 设计思路
 
