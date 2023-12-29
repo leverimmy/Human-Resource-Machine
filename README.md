@@ -5,13 +5,26 @@ Repository for the codes of Fundamentals of Programming, 2023 Fall
 **目录**
 
 - [Human Resource Machine](#human-resource-machine)
-  - [设计思路](#设计思路)
-  - [工程结构](#工程结构)
-  - [具体实现](#具体实现)
-  - [界面设计](#界面设计)
-  - [游戏测试](#游戏测试)
-  - [自由创新关卡](#自由创新关卡)
-  - [小组分工](#小组分工)
+	- [设计思路](#设计思路)
+	- [工程结构](#工程结构)
+	- [具体实现](#具体实现)
+		- [设置关卡信息](#设置关卡信息)
+		- [执行玩家输入的指令](#执行玩家输入的指令)
+		- [判断输入的指令是否合法](#判断输入的指令是否合法)
+	- [界面设计](#界面设计)
+	- [游戏测试](#游戏测试)
+		- [inbox](#inbox)
+		- [outbox](#outbox)
+		- [add](#add)
+		- [sub](#sub)
+		- [copyto](#copyto)
+		- [copyfrom](#copyfrom)
+		- [jump](#jump)
+		- [jumpifzero](#jumpifzero)
+		- [从文件读入指令](#从文件读入指令)
+		- [其他异常情况](#其他异常情况)
+	- [自由创新关卡](#自由创新关卡)
+	- [小组分工](#小组分工)
 
 ## 设计思路
 
@@ -550,6 +563,63 @@ int myToInt(QString str) {
 
 <img src="./pics/JumpifzeroErr2_2.png" width = 400>
 
+### 从文件读入指令
+
+本程序可以从一个 `.txt` 文件中读入指令。
+
+<img src="./pics/FileIn1.png" width = 400>
+
+在文本框为空时直接点击确认，则会出现弹窗，可以选择文件。
+
+<img src="./pics/FileIn2.png" width = 400>
+
+一个事例是当前目录下的 `program.txt` 文件：
+
+```
+inbox
+copyto 0
+inbox
+copyto 1
+copyfrom 0
+sub 1
+outbox
+copyfrom 1
+sub 0
+outbox
+inbox
+copyto 0
+inbox
+copyto 1
+copyfrom 0
+sub 1
+outbox
+copyfrom 1
+sub 0
+outbox
+inbox
+copyto 2
+sub 2
+outbox
+inbox
+sub 2
+outbox
+inbox
+copyto 0
+inbox
+copyto 1
+copyfrom 0
+sub 1
+outbox
+copyfrom 0
+add 1
+add 1
+add 1
+outbox
+```
+
+加载文件后，文件内的指令将会显示在文本框中，可以继续执行。
+
+<img src="./pics/FileIn3.png" width = 400>
 
 ### 其他异常情况
 
@@ -606,7 +676,7 @@ int myToInt(QString str) {
 <img src="./pics/NewLevel1.png" width = 400>
 
 
-若要游玩这一关卡，可以创建一个 `.json` 文件，内容如下：
+若要游玩这一关卡，可以参考当前目录下的事例 `extra_level.json`，文件内容如下：
 
 ```json
 {
