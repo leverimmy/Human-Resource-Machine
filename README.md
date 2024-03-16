@@ -78,24 +78,24 @@ Qt 6.6.0 以及配套版本的 MinGW 编译器
 - `widget.h`
 - `main.cpp`
 - `widget.cpp`  中实现了程序的大部分功能。
-  - `on_backButton1_clicked()`、`on_backButton2_clicked()`、`on_backButton3_clicked()`在按下不同页面的`返回`键时被调用。它们将程序的界面设置为上一级页面。
-  - `on_startButton_clicked()`在按下`开始游戏`键时被调用。它将试图读取储存于程序可执行文件所在目录中的存档`userdata.txt`，并根据其解锁可游玩的关卡。随后，它将程序界面设置为关卡选择页面。
-  - `on_aboutButton_clicked()`在按下`设置`键时被调用。它将程序的界面设置为设置页面。
-  - `on_exitButton_clicked()`在按下`退出游戏`键时被调用。它将目前已经通关的关卡编号写入`userdata.txt`中，随后关闭程序。
-  - `on_volumnHorizontalSlider_valueChanged()`在设置界面的音量滑块移动时被调用。它将程序背景音乐的音量设置为与滑块位置相对应的音量。
-  - `on_levelButton1_clicked()`、`on_levelButton2_clicked()`、`on_levelButton3_clicked()`分别在按下`第一关`、`第二关`、`第三关`键时被调用。它们将程序的界面设置为游戏页面，并根据大作业要求中的内容设置关卡信息。
-  - `on_levelButton4_clicked()`在`第四关`键被按下时被调用。它将弹出一个文件选择对话框并试图读取一个`.json`文件。若读取成功，则它将程序的界面设置为游戏页面，并根据`.json`文件中的信息设置关卡信息。
-  - `on_confirmNextStepButton_clicked()`在`下一步`/`检查结果`键被按下时被调用。它将读入一行游戏页面文本框中玩家输入的信息并检查其合法性，随后执行相关操作。
-  - `drawStatus()`在游戏页面更新时被调用。它将根据当前关卡目前的游戏状态，在页面上显示相关信息（如当前输入序列、目标输出序列、空地状态）。
-  - `setUpBackground()`在程序界面被设置为游戏页面时被调用。它将根据当前关卡的初始信息，在页面上显示相关信息（如可用指令集、可用空地数等）。
-  - `printSuccessMessage()`在关卡成功通过时被调用。它弹出一个对话框，显示当前关卡已成功完成。
-  - `printFailMessage()`在关卡失败时被调用。它弹出一个对话框，显示关卡失败，并提供`重新开始`与`返回主菜单`两个选项。
-  - `printErrorMessage()`在输入指令非法时被调用。它弹出一个对话框，显示关卡在当前位置出现了非法指令，并提供`重新开始`与`返回主菜单`两个选项。
-  - `checkResult()`在输入的指令执行完成后被调用。它比对当前输出序列与目标序列，并相应调用`printSuccessMessage()`或`printErrorMessage()`。
-  - `myToInt(QString)`在程序检查输入的指令参数时被调用。它检查当前指令的参数是否合法，若合法则返回参数，否则返回`-1`。
-  - `renderLevelButton(int)`在程序被设置为选关页面时被调用。它根据当前已通关的关卡来设置当前哪些关卡可以游玩。
-- `Resources.qrc`是程序的资源文件，储存了程序的背景音乐、字体与图片等。
-- `widget.ui`中存储了程序图形界面的相关设置。
+  - `on_backButton1_clicked()`、`on_backButton2_clicked()`、`on_backButton3_clicked()` 在按下不同页面的`返回`键时被调用。它们将程序的界面设置为上一级页面。
+  - `on_startButton_clicked()` 在按下`开始游戏`键时被调用。它将试图读取储存于程序可执行文件所在目录中的存档 `userdata.txt`，并根据其解锁可游玩的关卡。随后，它将程序界面设置为关卡选择页面。
+  - `on_aboutButton_clicked()` 在按下`设置`键时被调用。它将程序的界面设置为设置页面。
+  - `on_exitButton_clicked()` 在按下`退出游戏`键时被调用。它将目前已经通关的关卡编号写入 `userdata.txt` 中，随后关闭程序。
+  - `on_volumnHorizontalSlider_valueChanged()` 在设置界面的音量滑块移动时被调用。它将程序背景音乐的音量设置为与滑块位置相对应的音量。
+  - `on_levelButton1_clicked()`、`on_levelButton2_clicked()`、`on_levelButton3_clicked()` 分别在按下`第一关`、`第二关`、`第三关`键时被调用。它们将程序的界面设置为游戏页面，并根据大作业要求中的内容设置关卡信息。
+  - `on_levelButton4_clicked()` 在 `第四关` 键被按下时被调用。它将弹出一个文件选择对话框并试图读取一个 `.json` 文件。若读取成功，则它将程序的界面设置为游戏页面，并根据 `.json` 文件中的信息设置关卡信息。
+  - `on_confirmNextStepButton_clicked()` 在 `下一步`/`检查结果` 键被按下时被调用。它将读入一行游戏页面文本框中玩家输入的信息并检查其合法性，随后执行相关操作。
+  - `drawStatus()` 在游戏页面更新时被调用。它将根据当前关卡目前的游戏状态，在页面上显示相关信息（如当前输入序列、目标输出序列、空地状态）。
+  - `setUpBackground()` 在程序界面被设置为游戏页面时被调用。它将根据当前关卡的初始信息，在页面上显示相关信息（如可用指令集、可用空地数等）。
+  - `printSuccessMessage()` 在关卡成功通过时被调用。它弹出一个对话框，显示当前关卡已成功完成。
+  - `printFailMessage()` 在关卡失败时被调用。它弹出一个对话框，显示关卡失败，并提供 `重新开始` 与 `返回主菜单` 两个选项。
+  - `printErrorMessage()` 在输入指令非法时被调用。它弹出一个对话框，显示关卡在当前位置出现了非法指令，并提供 `重新开始` 与 `返回主菜单` 两个选项。
+  - `checkResult()` 在输入的指令执行完成后被调用。它比对当前输出序列与目标序列，并相应调用 `printSuccessMessage()` 或 `printErrorMessage()`。
+  - `myToInt(QString)` 在程序检查输入的指令参数时被调用。它检查当前指令的参数是否合法，若合法则返回参数，否则返回 `-1`。
+  - `renderLevelButton(int)` 在程序被设置为选关页面时被调用。它根据当前已通关的关卡来设置当前哪些关卡可以游玩。
+- `Resources.qrc` 是程序的资源文件，储存了程序的背景音乐、字体与图片等。
+- `widget.ui` 中存储了程序图形界面的相关设置。
 
 ## 具体实现
 
