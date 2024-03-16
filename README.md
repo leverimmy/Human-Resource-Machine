@@ -79,9 +79,9 @@ Qt 6.6.0 以及配套版本的 MinGW 编译器
 - `main.cpp`
 - `widget.cpp`  中实现了程序的大部分功能。
   - `on_backButton1_clicked()`、`on_backButton2_clicked()`、`on_backButton3_clicked()` 在按下不同页面的`返回`键时被调用。它们将程序的界面设置为上一级页面。
-  - `on_startButton_clicked()` 在按下`开始游戏`键时被调用。它将试图读取储存于程序可执行文件所在目录中的存档 `userdata.txt`，并根据其解锁可游玩的关卡。随后，它将程序界面设置为关卡选择页面。
-  - `on_aboutButton_clicked()` 在按下`设置`键时被调用。它将程序的界面设置为设置页面。
-  - `on_exitButton_clicked()` 在按下`退出游戏`键时被调用。它将目前已经通关的关卡编号写入 `userdata.txt` 中，随后关闭程序。
+  - `on_startButton_clicked()` 在按下 `开始游戏` 键时被调用。它将试图读取储存于程序可执行文件所在目录中的存档 `userdata.txt`，并根据其解锁可游玩的关卡。随后，它将程序界面设置为关卡选择页面。
+  - `on_aboutButton_clicked()` 在按下 `设置` 键时被调用。它将程序的界面设置为设置页面。
+  - `on_exitButton_clicked()` 在按下 `退出游戏` 键时被调用。它将目前已经通关的关卡编号写入 `userdata.txt` 中，随后关闭程序。
   - `on_volumnHorizontalSlider_valueChanged()` 在设置界面的音量滑块移动时被调用。它将程序背景音乐的音量设置为与滑块位置相对应的音量。
   - `on_levelButton1_clicked()`、`on_levelButton2_clicked()`、`on_levelButton3_clicked()` 分别在按下`第一关`、`第二关`、`第三关`键时被调用。它们将程序的界面设置为游戏页面，并根据大作业要求中的内容设置关卡信息。
   - `on_levelButton4_clicked()` 在 `第四关` 键被按下时被调用。它将弹出一个文件选择对话框并试图读取一个 `.json` 文件。若读取成功，则它将程序的界面设置为游戏页面，并根据 `.json` 文件中的信息设置关卡信息。
