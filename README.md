@@ -1,6 +1,6 @@
 # Human Resource Machine
 
-Repository for the codes of Fundamentals of Programming, 2023 Fall
+Repository for the codes of the project of Fundamentals of Programming, 2023 Fall
 
 **目录**
 
